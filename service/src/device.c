@@ -1,4 +1,9 @@
 /*
+<!-- Changes from Qualcomm Innovation Center are provided under the following license:    -->
+<!--                                                                                      -->
+<!-- Copyright (c) 2024 Qualcomm Innovation Center, Inc. All rights reserved.        -->
+<!-- SPDX-License-Identifier: BSD-3-Clause-Clear                                          -->
+**
 ** Copyright (c) 2019-2021, The Linux Foundation. All rights reserved.
 **
 ** Redistribution and use in source and binary forms, with or without
@@ -1123,6 +1128,9 @@ static void split_snd_card_name(const char * in_snd_card_name, char* file_path_e
                strlcpy(file_path_extn_wo_variant, file_path_extn, FILE_PATH_EXTN_MAX_SIZE);
             strlcat(file_path_extn, "_", FILE_PATH_EXTN_MAX_SIZE);
             strlcat(file_path_extn, card_sub_str, FILE_PATH_EXTN_MAX_SIZE);
+#ifdef QTI_OPTIMIZED
+            strlcat(file_path_extn, "_qti_optimized", FILE_PATH_EXTN_MAX_SIZE);
+#endif
         }
         else
             break;
