@@ -17,13 +17,16 @@ AM_CFLAGS += @MMHEADERS_CFLAGS@
 lib_LTLIBRARIES      = libagm_pcm_plugin.la
 libagm_pcm_plugin_la_SOURCES   = src/agm_pcm_plugin.c
 libagm_pcm_plugin_la_CFLAGS = $(AM_CFLAGS)
-libagm_pcm_plugin_la_LDFLAGS  = -ltinyalsa -lsndcardparser -avoid-version -L$(top_builddir)/snd_parser/.libs  -share
+libagm_pcm_plugin_la_LDFLAGS  = -ltinyalsa -lsndcardparser -avoid-version -L$(top_builddir)/snd_parser/.libs  -shared
 libagm_pcm_plugin_la_LDFLAGS +=   -laudio_log_utils
 if AGM_NO_IPC
 libagm_pcm_plugin_la_CFLAGS += -DAGM_NO_IPC
 libagm_pcm_plugin_la_LDFLAGS += -lagm -L$(top_builddir)/service/.libs
 else
 libagm_pcm_plugin_la_LDFLAGS += -lagmclient -L$(top_builddir)/ipc/DBus/agm_client/.libs
+endif
+if AGM_32BIT
+libagm_pcm_plugin_la_CFLAGS += -DAGM_32BIT
 endif
 
 lib_LTLIBRARIES      += libagm_compress_plugin.la
@@ -36,7 +39,9 @@ libagm_compress_plugin_la_LDFLAGS += -lagm -L$(top_builddir)/service/.libs
 else
 libagm_compress_plugin_la_LDFLAGS += -lagmclient -L$(top_builddir)/ipc/DBus/agm_client/.libs
 endif
-
+if AGM_32BIT
+libagm_compress_plugin_la_CFLAGS += -DAGM_32BIT
+endif
 
 lib_LTLIBRARIES      += libagm_mixer_plugin.la
 libagm_mixer_plugin_la_SOURCES   = src/agm_mixer_plugin.c
@@ -49,3 +54,7 @@ libagm_mixer_plugin_la_LDFLAGS += -lagm -L$(top_builddir)/service/.libs
 else
 libagm_mixer_plugin_la_LDFLAGS += -lagmclient -L$(top_builddir)/ipc/DBus/agm_client/.libs
 endif
+if AGM_32BIT
+libagm_mixer_plugin_la_CFLAGS += -DAGM_32BIT
+endif
+

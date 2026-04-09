@@ -39,7 +39,7 @@ libagm_la_CFLAGS = $(AM_CFLAGS) -DACDB_PATH=\"/etc/acdbdata/\" -DACDB_DELTA_FILE
 if USE_SYSLOG
 libagm_la_CFLAGS += -DAGM_USE_SYSLOG
 endif
-libagm_la_CFLAGS += -DAGM_MEMLOG_UNSUPPORTED
+libagm_la_CFLAGS += -DAGM_MEMLOG_UNSUPPORTED -DCARD_STATE_UNSUPPORTED
 
 libagm_la_CFLAGS += -D__unused=__attribute__\(\(__unused__\)\)
 libagm_la_CFLAGS += @GLIB_CFLAGS@ -Dstrlcpy=g_strlcpy -Dstrlcat=g_strlcat -include glib.h

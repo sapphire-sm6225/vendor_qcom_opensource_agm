@@ -21,6 +21,6 @@ bin_PROGRAMS = agm_server
 
 agm_server_SOURCES = ./src/agm-server-daemon.cpp
 agm_server_la_CPPFLAGS = $(AM_CPPFLAGS)
-agm_server_LDADD = libagmserverwrapper.la
+agm_server_LDADD = libagmserverwrapper.la $(GLIB_LIBS)
 agm_server_LDFLAGS = -ldl -shared -avoid-version
 
