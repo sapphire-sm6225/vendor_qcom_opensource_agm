@@ -93,16 +93,13 @@ LOCAL_MODULE        := libagm_compress_plugin
 LOCAL_MODULE_OWNER  := qti
 LOCAL_MODULE_TAGS   := optional
 LOCAL_VENDOR_MODULE := true
-ifeq ($(TARGET_PREBUILT_KERNEL),)
-LOCAL_C_INCLUDES    += $(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/usr/include
-LOCAL_ADDITIONAL_DEPENDENCIES += $(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/usr
-endif
 LOCAL_SRC_FILES     := src/agm_compress_plugin.c
 
 LOCAL_HEADER_LIBRARIES := \
     libagm_headers \
     libarpal_headers \
-    libarosal_headers
+    libarosal_headers \
+    generated_kernel_headers
 
 LOCAL_SHARED_LIBRARIES := \
     libsndcardparser \
